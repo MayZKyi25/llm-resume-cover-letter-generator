@@ -22,8 +22,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8  # Install flake8 (you can replace it with your preferred linter)
+          pip install flake8 
 
       - name: Run flake8
         run: |
-          flake8 .  # Run flake8 linter on the current directory
+          flake8 .
