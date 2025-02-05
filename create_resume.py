@@ -10,6 +10,7 @@ print ("\nAPI Key is successfully entered.")
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
+
 # Build prompt with the following inputs: job descripion, personal info, prompt
 job_description = """
 We are looking for a skilled software engineer with expertise in Python, machine learning, and cloud platforms. The ideal candidate should have at least 2 years of experience working with large datasets and building scalable applications.
@@ -23,11 +24,29 @@ Experience: 1-year internship in AI Research with Breath Through Tech AI
 """
 
 prompt = f"""
-Job Description: {job_description}
-Personal Information: {personal_info}
+Use the job description and personal information to generate a resume in markdown format. 
 
-Generate a resume in markdown format based on the above information, tailored to the job description.
+Job Description:
+{job_description}
+
+Personal Information:
+{personal_info}
+
+Focus on aligning the resume with keywords from the job description to optimize it for applicant tracking systems (ATS).
 """
+
+# prompt = f"""
+
+# Job Description: 
+# {job_description}
+
+# Personal Information: 
+# {personal_info}
+
+# Generate a resume in markdown format based on the above information, tailored to the job description.
+# """
+
+
 
 # Response from the generative model
 resume_output = model.generate_content(prompt).text
