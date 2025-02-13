@@ -4,12 +4,12 @@ import os
 import time
 
 # Function to create the job postings database table
-def create_database(db_name="job_postings.db"):  
+def create_database(db_name="job_postings_test.db"):  
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
 
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS job_postings (
+        CREATE TABLE IF NOT EXISTS job_postings_test (
             id TEXT PRIMARY KEY,
             site TEXT,
             job_url TEXT,
@@ -47,90 +47,93 @@ def create_database(db_name="job_postings.db"):
     conn.commit()
     conn.close()
 
-# Process a single job entry
-def process_single_job(job):
-    job_providers = job.get("jobProviders", [])  # Extract jobProviders list
-    providers_str = ", ".join(f"{p.get('jobProvider', 'Unknown')}: {p.get('url', 'No URL')}" for p in job_providers)
+# Process a single job entry safely
+def process_single_job(job, line_number, json_file):
+    try:
+        job_providers = job.get("jobProviders", [])
+        if not isinstance(job_providers, list):  
+            job_providers = []  # Ensure it's a list to avoid errors
 
-    return {
-        "id": job.get("id"),
-        "site": job.get("site", ""),
-        "job_url": job.get("job_url", ""),
-        "job_url_direct": job.get("job_url_direct", ""),
-        "title": job.get("title", ""),
-        "company": job.get("company", ""),
-        "location": job.get("location", ""),
-        "job_type": job.get("employmentType", ""),
-        "date_posted": job.get("datePosted", ""),
-        "salary_source": job.get("salary_source", ""),
-        "interval": job.get("interval", ""),
-        "min_amount": job.get("min_amount"),
-        "max_amount": job.get("max_amount"),
-        "currency": job.get("currency", ""),
-        "is_remote": job.get("is_remote", False),
-        "job_level": job.get("job_level", ""),
-        "job_function": job.get("job_function", ""),
-        "company_industry": job.get("company_industry", ""),
-        "listing_type": job.get("listing_type", ""),
-        "emails": ", ".join(job.get("emails", [])),  # Store emails as a comma-separated string
-        "description": job.get("description", ""),
-        "company_url": job.get("company_url", ""),
-        "company_url_direct": job.get("company_url_direct", ""),
-        "company_addresses": ", ".join(job.get("company_addresses", [])),
-        "company_num_employees": job.get("company_num_employees"),
-        "company_revenue": job.get("company_revenue", ""),
-        "company_description": job.get("company_description", ""),
-        "logo_photo_url": job.get("logo_photo_url", ""),
-        "ceo_name": job.get("ceo_name", ""),
-        "ceo_photo_url": job.get("ceo_photo_url", ""),
-        "job_providers": providers_str  # Insert job providers string
-    }
+        providers_str = ", ".join(f"{p.get('jobProvider', 'Unknown')}: {p.get('url', 'No URL')}" for p in job_providers)
 
-# Analysis of rapid_jobs2.json
-# The file Newline Delimited JSON format, each line is a standalone JSON object.
-# Instead of loading the entire file as a JSON array, need to process it line by line to decode each JSON entry separately.
+        return {
+            "id": job.get("id"),
+            "site": job.get("site", ""),
+            "job_url": job.get("job_url", ""),
+            "job_url_direct": job.get("job_url_direct", ""),
+            "title": job.get("title", ""),
+            "company": job.get("company", ""),
+            "location": job.get("location", ""),
+            "job_type": job.get("employmentType", ""),
+            "date_posted": job.get("datePosted", ""),
+            "salary_source": job.get("salary_source", ""),
+            "interval": job.get("interval", ""),
+            "min_amount": job.get("min_amount"),
+            "max_amount": job.get("max_amount"),
+            "currency": job.get("currency", ""),
+            "is_remote": job.get("is_remote", False),
+            "job_level": job.get("job_level", ""),
+            "job_function": job.get("job_function", ""),
+            "company_industry": job.get("company_industry", ""),
+            "listing_type": job.get("listing_type", ""),
+            "emails": ", ".join(job.get("emails", [])),  
+            "description": job.get("description", ""),
+            "company_url": job.get("company_url", ""),
+            "company_url_direct": job.get("company_url_direct", ""),
+            "company_addresses": ", ".join(job.get("company_addresses", [])),
+            "company_num_employees": job.get("company_num_employees"),
+            "company_revenue": job.get("company_revenue", ""),
+            "company_description": job.get("company_description", ""),
+            "logo_photo_url": job.get("logo_photo_url", ""),
+            "ceo_name": job.get("ceo_name", ""),
+            "ceo_photo_url": job.get("ceo_photo_url", ""),
+            "job_providers": providers_str
+        }
+    except Exception as e:
+        print(f"Error processing job entry at line {line_number} in {json_file}: {e}")
+        return None
 
-
-# Process JSON file
-import json
-
+# Process JSON file safely
 def process_json_file(json_file):
     job_entries = []
     
     try:
         with open(json_file, "r", encoding="utf-8") as file:
-            first_char = file.read(1).strip()  # Read first character to check format
-            file.seek(0)  # Reset file pointer
+            first_char = file.read(1).strip()  
+            file.seek(0)  
 
             if first_char == "[":  
-                # JSON Array format (like rapidResults.json)
                 try:
-                    data = json.load(file)  # Load entire JSON file
+                    data = json.load(file)  
                     if isinstance(data, list):
-                        job_entries = [process_single_job(job) for job in data]
+                        for i, job in enumerate(data):
+                            processed_job = process_single_job(job, i + 1, json_file)
+                            if processed_job:
+                                job_entries.append(processed_job)
                     else:
                         print(f"Skipping unknown JSON structure in {json_file}")
                 except json.JSONDecodeError as e:
                     print(f"Error decoding JSON array in {json_file}: {e}")
 
             else:  
-                # NDJSON format (like rapid_jobs2.json) - Read line by line
                 print(f"Processing {json_file} as NDJSON...")
 
                 for line_number, line in enumerate(file, start=1):
                     line = line.strip()
                     if not line:
-                        continue  # Skip empty lines
+                        continue  
 
                     try:
-                        job = json.loads(line)  # Parse each line separately
-                        if isinstance(job, dict):  # Ensure it's a valid job entry
-                            job_entries.append(process_single_job(job))
+                        job = json.loads(line)  
+                        if isinstance(job, dict):  
+                            processed_job = process_single_job(job, line_number, json_file)
+                            if processed_job:
+                                job_entries.append(processed_job)
                         else:
-                            print(f"Skipping non-dictionary entry at line {line_number} in {json_file}")
+                            print(f"Skipping invalid entry at line {line_number} in {json_file}")
                     
                     except json.JSONDecodeError as e:
-                        print(f"Skipping invalid JSON at line {line_number} in {json_file}: {e}")
+                        print(f"Skipping malformed JSON at line {line_number} in {json_file}: {e}")
 
     except Exception as e:
         print(f"Error reading {json_file}: {e}")
@@ -138,8 +141,10 @@ def process_json_file(json_file):
     return job_entries
 
 
-def insert_jobs(json_file, db_name="job_postings.db"):
+def insert_jobs(json_file, db_name="job_postings_test.db"):
     retries = 5
+    print(f"\nProcessing file: {json_file}")  # Debugging: Indicate which file is being processed
+    
     for attempt in range(retries):
         try:
             conn = sqlite3.connect(db_name)
@@ -149,16 +154,19 @@ def insert_jobs(json_file, db_name="job_postings.db"):
             
             if not job_entries:
                 print(f"No job entries found in {json_file}")
+                return
             
-            for job_data in job_entries:  
-                if not job_data.get("id"):
-                    print(f"Skipping job with missing ID: {job_data}")
+            for index, job_data in enumerate(job_entries, start=1):  
+                job_id = job_data.get("id")
+                
+                if not job_id:
+                    print(f"Skipping job at index {index} in {json_file} due to missing ID: {job_data}")
                     continue
                 
-                print("Inserting job:", job_data)
-                
+                print(f"[{json_file}] Inserting job {index} - ID: {job_id}")  # Debugging
+
                 cursor.execute("""
-                    INSERT OR IGNORE INTO job_postings (
+                    INSERT OR IGNORE INTO job_postings_test (
                         id, site, job_url, job_url_direct, title, company, location, job_type, date_posted, 
                         salary_source, interval, min_amount, max_amount, currency, is_remote, job_level, 
                         job_function, company_industry, listing_type, emails, description, company_url, 
@@ -175,13 +183,16 @@ def insert_jobs(json_file, db_name="job_postings.db"):
 
             conn.commit()
             conn.close()
-            print(f"Data inserted successfully from {json_file}")
+            print(f"[{json_file}] Successfully inserted {len(job_entries)} jobs.\n")  # Debugging success message
             return
+
         except sqlite3.OperationalError as e:
             if "database is locked" in str(e) and attempt < retries - 1:
+                print(f"[{json_file}] Database locked, retrying ({attempt + 1}/{retries})...")
                 time.sleep(1)
             else:
-                print(f"Failed to insert data from {json_file}: {e}")
+                print(f"[{json_file}] Failed to insert data: {e}")
+
 
 # Get JSON file paths dynamically
 def get_json_files():
@@ -191,7 +202,7 @@ def get_json_files():
 if __name__ == "__main__":
     create_database()
     
-    json_files = get_json_files()  # Dynamically get JSON files
+    json_files = get_json_files()
     if not json_files:
         print("No JSON files found in the directory.")
     else:
