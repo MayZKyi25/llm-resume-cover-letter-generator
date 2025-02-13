@@ -3,12 +3,9 @@ import json
 import os
 import time
 
-# Database file name
-DATABASE_FILE = "job_postings.db"
-
 # Function to create the job postings database table
-def create_database():
-    conn = sqlite3.connect(DATABASE_FILE)
+def create_database(db_name="job_postings.db"):  
+    conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -89,6 +86,11 @@ def process_single_job(job):
         "job_providers": providers_str  # Insert job providers string
     }
 
+# Analysis of rapid_jobs2.json
+# The file Newline Delimited JSON format, each line is a standalone JSON object.
+# Instead of loading the entire file as a JSON array, need to process it line by line to decode each JSON entry separately.
+
+
 # Process JSON file
 def process_json_file(json_file):
     job_entries = []
@@ -129,24 +131,24 @@ def process_json_file(json_file):
 
 
 
-def insert_job_data(json_file):
+def insert_jobs(json_file, db_name="job_postings.db"):
     retries = 5
     for attempt in range(retries):
         try:
-            conn = sqlite3.connect(DATABASE_FILE)
+            conn = sqlite3.connect(db_name)
             cursor = conn.cursor()
 
-            job_entries = process_json_file(json_file)  # Get processed job list
+            job_entries = process_json_file(json_file)
             
-            if not job_entries:  # Debugging: Check if jobs are being extracted
+            if not job_entries:
                 print(f"No job entries found in {json_file}")
             
             for job_data in job_entries:  
-                if not job_data.get("id"):  # Ensure job ID exists
+                if not job_data.get("id"):
                     print(f"Skipping job with missing ID: {job_data}")
                     continue
                 
-                print("Inserting job:", job_data)  # Debug print
+                print("Inserting job:", job_data)
                 
                 cursor.execute("""
                     INSERT OR IGNORE INTO job_postings (
@@ -170,46 +172,9 @@ def insert_job_data(json_file):
             return
         except sqlite3.OperationalError as e:
             if "database is locked" in str(e) and attempt < retries - 1:
-                time.sleep(1)  # Wait and retry
+                time.sleep(1)
             else:
                 print(f"Failed to insert data from {json_file}: {e}")
-
-# # Insert job postings into the database
-# def insert_job_data(json_file):
-#     retries = 5
-#     for attempt in range(retries):
-#         try:
-#             conn = sqlite3.connect(DATABASE_FILE)
-#             cursor = conn.cursor()
-
-#             job_entries = process_json_file(json_file)  # Get processed job list
-#             for job_data in job_entries:  
-#                 if job_data["id"]:  # Ensure job ID exists
-#                     cursor.execute("""
-#                         INSERT OR IGNORE INTO job_postings (
-#                             id, site, job_url, job_url_direct, title, company, location, job_type, date_posted, 
-#                             salary_source, interval, min_amount, max_amount, currency, is_remote, job_level, 
-#                             job_function, company_industry, listing_type, emails, description, company_url, 
-#                             company_url_direct, company_addresses, company_num_employees, company_revenue, 
-#                             company_description, logo_photo_url, ceo_name, ceo_photo_url, job_providers
-#                         ) VALUES (
-#                             :id, :site, :job_url, :job_url_direct, :title, :company, :location, :job_type, :date_posted, 
-#                             :salary_source, :interval, :min_amount, :max_amount, :currency, :is_remote, :job_level, 
-#                             :job_function, :company_industry, :listing_type, :emails, :description, :company_url, 
-#                             :company_url_direct, :company_addresses, :company_num_employees, :company_revenue, 
-#                             :company_description, :logo_photo_url, :ceo_name, :ceo_photo_url, :job_providers
-#                         )
-#                     """, job_data)
-
-#             conn.commit()
-#             conn.close()
-#             print(f"Data inserted successfully from {json_file}")
-#             return
-#         except sqlite3.OperationalError as e:
-#             if "database is locked" in str(e) and attempt < retries - 1:
-#                 time.sleep(1)  # Wait and retry
-#             else:
-#                 print(f"Failed to insert data from {json_file}: {e}")
 
 # Get JSON file paths dynamically
 def get_json_files():
@@ -224,6 +189,6 @@ if __name__ == "__main__":
         print("No JSON files found in the directory.")
     else:
         for file in json_files:
-            insert_job_data(file)
+            insert_jobs(file)
 
     print("All job postings have been inserted successfully.")

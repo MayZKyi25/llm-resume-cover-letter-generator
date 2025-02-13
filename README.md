@@ -20,3 +20,14 @@ I started with a basic prompt, But then I decided to focus more on optimizing th
 
 
 
+
+#Intall pytest in terminal
+pip install pytest
+
+#to run the test_database.py in terminal
+pytest test_database.py
+
+
+
+
+
