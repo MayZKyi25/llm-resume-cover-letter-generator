@@ -35,10 +35,10 @@ prompt = (
 
 # prompt = f"""
 
-# Job Description: 
+# Job Description:
 # {job_description}
 
-# Personal Information: 
+# Personal Information:
 # {personal_info}
 
 # Generate a resume in markdown format based on the above information, tailored to the job description.
@@ -52,6 +52,6 @@ file_path = os.path.join(directory_path, "resum_template.md")
 os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
 # Open the file and write the content
-with open(file_path, 'w') as file:
+with open(file_path, "w") as file:
     file.write(resume_output)
 print(f"\nResume template is saved to {file_path}\n")

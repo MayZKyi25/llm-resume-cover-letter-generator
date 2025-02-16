@@ -6,6 +6,7 @@ from database_sprint2 import create_database, insert_jobs, process_json_file
 
 TEST_DB = "test_job_postings.db"
 
+
 @pytest.fixture
 def setup_database():
     """Creates a fresh test database before each test and deletes it after."""
@@ -17,13 +18,14 @@ def setup_database():
     yield sqlite3.connect(TEST_DB)
     os.remove(TEST_DB)
 
+
 def test_process_json_file():
     test_json = "test_jobs.json"
 
     sample_jobs = [
         {"id": "test1", "title": "Job 1", "company": "Company A"},
         {"id": "test2", "title": "Job 2", "company": "Company B"},
-        {"id": "test3", "title": "Job 3", "company": "Company C"}
+        {"id": "test3", "title": "Job 3", "company": "Company C"},
     ]
 
     with open(test_json, "w") as file:
@@ -42,6 +44,7 @@ def test_process_json_file():
     assert jobs[-1]["title"] == "Job 3"
     assert jobs[-1]["company"] == "Company C"
 
+
 def test_database_insertion(setup_database):
     test_json = "test_jobs.json"
 
@@ -55,7 +58,9 @@ def test_database_insertion(setup_database):
             "datePosted": "2025-01-01",
             "salaryRange": "$50,000",
             "currency": "USD",
-            "jobProviders": [{"jobProvider": "Indeed", "url": "https://example.com/test1"}]
+            "jobProviders": [
+                {"jobProvider": "Indeed", "url": "https://example.com/test1"}
+            ],
         }
     ]
 
