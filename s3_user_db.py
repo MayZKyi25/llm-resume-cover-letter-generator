@@ -35,8 +35,34 @@ def save_user_info(data):
               data["linkedin"], data["projects"], data["classes"], data["other_info"]))
         conn.commit()
 
-    return "Success"
+    return "Success! Saved users' info can be found in job_postings.db's user_info table"
+
+def get_user_info(email):
+    """Fetch user information by email."""
+    with sqlite3.connect(DB_NAME) as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT name, email, phone, github, linkedin, projects, classes, other_info
+            FROM user_info WHERE email = ?
+        ''', (email,))
+        user = cursor.fetchone()
+
+    if user:
+        return {
+            "name": user[0],
+            "email": user[1],
+            "phone": user[2],
+            "github": user[3],
+            "linkedin": user[4],
+            "projects": user[5],
+            "classes": user[6],
+            "other_info": user[7],
+        }
+    return None  # Return None if the user is not found
+
 
 if __name__ == "__main__":
     create_user_info_table()
     print("User database initialized.")
+
+

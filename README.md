@@ -1,22 +1,55 @@
-# ************ COMP490Project1MayZKyi_Sprint 1 ************
+# ************ COMP490Project1MayZKyi_Sprint 3 ************
+# Interactive Job Selection and User Data Entry
+# 1. Overview of Sprint 3
+- Sprint 3 introduces an interactive interface that allows users to:
 
-# How to Run the Program: Make sure to have the following requriements ready on your device: 
-  1. Python 3 installed on your device
-  2. A Google AI API Key
-  3. The google-generativeai package installed (Install using pip install google-generativeai)
+- View job postings stored in the SQLite database (from Sprint 2).
+- Select a job from the list to display its full details.
+- Input personal details, including:
+- Identifying Information: Name, email, phone number, GitHub, LinkedIn, etc and save the entered information to the database in a new user_info table under "job_postings.db"
 
-# Running the Program 
-  1. Clone the project repository (git clone https://github.com/mkyi-bsu/COMP490Project1MayZKyi.git)
-  2. Save the project to your device and open it with a supported IDE
-  3. Run the "create_resume.py" script
-  4. Enter the Google API key when prompted
-  5. Provide a directory path to save the generated resume. The resume will be saved as resume_template.md in the specified directory
+# 2. Requirements
+- Python 3.12 or later
+- SQLite3
+- pytest (for testing)
+- tkinter for GUI
+- A virtual environment (recommended)
 
-# Why I Chose Google Gemini AI
-I chose Google’s Gemini AI because it’s free to use and works well for generating structured text like resumes. It understands context, so the resume matches the job description better. It’s also fast and easy to use. Plus, I’m already familiar with Google Cloud, which made it easier to set up.
+# 3. Setting Up the Program
+# Clone the Repository
+    - Clone the repository using the command:git clone <repository_url>
+    # Example usage:
+    - git clone https://github.com/mkyi-bsu/COMP490Project1MayZKyi.git
 
-# The AI Prompt Chosen and Why
-I started with a basic prompt, But then I decided to focus more on optimizing the resume for applicant tracking systems (ATS). I modified the prompt to focus on aligning the resume with keywords from the job description to optimize it for applicant tracking systems (ATS). This change made sure the resume would be more likely to pass ATS filters by highlighting key skills and experiences that match the job description.
+# 4. The Interactive Interface
+1. First Implementation: (s3_display_all_jobs.py) Console-based
+✅ - Displays job all listings from (job_postings.db & job_postings2.db)
+✅ - Allows user selection from combined job lists
+✅ - Fetches and prints complete job details in the console
+✅ - Handles missing databases gracefully
+❌ - Not interactive (only console-based, no UI elements)
+
+2. Second Implementation (s3_ui_components) Tkinter-Based UI
+✅ - Provides a graphical user interface (GUI) for job selection
+✅ - Allows users to enter and save their personal information
+✅ - Displays job title, company, location, and description in the UI
+❌ - Does not show full job details (full description, missing employment type, date posted, salary, etc.)
+
+# Run the Both Console-based & Tkinter-Based UI
+- Run the UI or enter "python3 s3_ui_components.py" in terminal
+- A job list will be displayed.
+- Selecting a job will show its detailed description.
+- For Tkinter-based UI, users can enter personal details and click a "Save" button to store them in the database.
+
+# 5. Database Information
+- expands the SQLite database (job_postings.db) by adding a new table for user data.
+
+Database Tables:
+- job_postings → Stores job listings.
+- user_info (new) → Stores user-entered information.
+
+# 6. Running Automated Tests
+pytest s3_test_app.py
 
 # ************ COMP490Project1MayZKyi_Sprint 2 ************
 
@@ -64,6 +97,28 @@ To verify the job data insertion, run the following commands in the terminal or 
     - pytest test_database.py
 
 ***** Note: The current version does not correctly handle inserting two types of JSON formats into the same table. To address this, I created the handle_rapid_jobs2json.py script to insert JSON data from rapid_jobs2.json. *****
+
+**** Update: It was fixed. **** 
+
+# ************ COMP490Project1MayZKyi_Sprint 1 ************
+
+# How to Run the Program: Make sure to have the following requriements ready on your device: 
+  1. Python 3 installed on your device
+  2. A Google AI API Key
+  3. The google-generativeai package installed (Install using pip install google-generativeai)
+
+# Running the Program 
+  1. Clone the project repository (git clone https://github.com/mkyi-bsu/COMP490Project1MayZKyi.git)
+  2. Save the project to your device and open it with a supported IDE
+  3. Run the "create_resume.py" script
+  4. Enter the Google API key when prompted
+  5. Provide a directory path to save the generated resume. The resume will be saved as resume_template.md in the specified directory
+
+# Why I Chose Google Gemini AI
+I chose Google’s Gemini AI because it’s free to use and works well for generating structured text like resumes. It understands context, so the resume matches the job description better. It’s also fast and easy to use. Plus, I’m already familiar with Google Cloud, which made it easier to set up.
+
+# The AI Prompt Chosen and Why
+I started with a basic prompt, But then I decided to focus more on optimizing the resume for applicant tracking systems (ATS). I modified the prompt to focus on aligning the resume with keywords from the job description to optimize it for applicant tracking systems (ATS). This change made sure the resume would be more likely to pass ATS filters by highlighting key skills and experiences that match the job description.
 
 
 

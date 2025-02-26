@@ -5,15 +5,22 @@ from s3_job_fetcher import fetch_jobs, get_job_details
 
 def create_ui():
     root = tk.Tk()
-    root.title("Job Application")
+    root.title("Job Finder App")
 
     # Job Selection Listbox
-    job_listbox = tk.Listbox(root, width=50, height=15)
+    job_listbox = tk.Listbox(root, width=50, height=20)
     job_listbox.pack()
 
     jobs = fetch_jobs()
     for job in jobs:
         job_listbox.insert(tk.END, f"{job[1]} - {job[2]}")  # Display title and company
+
+    # Job Details Frame (To display details inside UI)
+    job_details_frame = tk.Frame(root)
+    job_details_frame.pack(pady=10)
+
+    label_job_details = tk.Label(job_details_frame, text="Select a job to see details.", justify=tk.LEFT, anchor="w", wraplength=500)
+    label_job_details.pack()
 
     def show_job_details(event):
         selected_job_index = job_listbox.curselection()
@@ -22,11 +29,17 @@ def create_ui():
         job_id = jobs[selected_job_index[0]][0]
         job_details = get_job_details(job_id)
 
+        if not job_details:
+            label_job_details.config(text="Error: Job details not found.")
+            return
+
+        description = job_details[19] if job_details[19] else "None"
+
         details_text = f"""
         Job Title: {job_details[4]}
         Company: {job_details[5]}
         Location: {job_details[6]}
-        Description: {job_details[19]}
+        Description: {description}
         """
         label_job_details.config(text=details_text)
 
@@ -51,9 +64,6 @@ def create_ui():
         messagebox.showinfo("Result", result)
 
     tk.Button(root, text="Save Info", command=save_info).pack(pady=10)
-
-    label_job_details = tk.Label(root, text="Job details will appear here.", justify=tk.LEFT)
-    label_job_details.pack(pady=10)
 
     return root
 
