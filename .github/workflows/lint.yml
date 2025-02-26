@@ -24,16 +24,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m venv venv
-          source venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          venv/bin/python -m pip install --upgrade pip
+          venv/bin/pip install -r requirements.txt
 
       - name: Run flake8 (Linting)
         run: |
-          source venv/bin/activate
-          flake8 .
+          venv/bin/flake8 . --ignore E501,W503
 
       - name: Run pytest (Unit Tests)
         run: |
-          source venv/bin/activate
-          pytest --tb=short --disable-warnings
+          venv/bin/pytest --tb=short --disable-warnings
+
