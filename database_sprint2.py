@@ -40,7 +40,7 @@ def create_database(db_name="job_postings.db"):
             logo_photo_url TEXT,
             ceo_name TEXT,
             ceo_photo_url TEXT,
-            job_providers TEXT -- Store all job providers as a comma-separated string
+            job_providers TEXT 
         )
     ''')
 
@@ -138,6 +138,8 @@ def process_json_file(json_file):
     return job_entries
 
 
+
+
 def insert_jobs(json_file, db_name="job_postings.db"):
     retries = 5
     for attempt in range(retries):
@@ -199,3 +201,4 @@ if __name__ == "__main__":
             insert_jobs(file)
 
     print("All job postings have been inserted successfully.")
+

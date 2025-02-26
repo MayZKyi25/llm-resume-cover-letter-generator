@@ -2,7 +2,7 @@ import sqlite3
 import json
 import os
 
-DB_NAME = "job_posting_2_from_rapid_jobs2.db"
+DB_NAME = "job_postings2.db"
 
 def create_database():
     """Creates the job_postings table in the database if it doesn't exist."""
