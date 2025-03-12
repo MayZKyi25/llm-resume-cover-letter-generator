@@ -1,32 +1,27 @@
 ```markdown
 [Your Name]
-[Your Address]
-[Your Phone Number]
-[Your Email Address]
-[Your LinkedIn Profile URL]
-[Your GitHub Profile URL]
+[Your Address] | [Your Phone] | [Your Email] | [Your GitHub] | [Your LinkedIn]
 
 [Date]
 
-[Hiring Manager Name (if known), or "Hiring Team"]
+Hiring Manager
 Pearson
-[Pearson Address (if known)]
+[Address if available, otherwise omit]
+Raleigh, NC
 
-**Subject: Application for Software Developer - Item Assist product (Req ID: 16683)**
+**Subject: Application for Software Developer - Item Assist, Req ID: 16683**
 
-Dear [Hiring Manager Name or Hiring Team],
+Dear Hiring Manager,
 
-I am writing to express my enthusiastic interest in the Software Developer position for the Item Assist product at Pearson in Raleigh, NC, as advertised on [Platform where you saw the ad - e.g., Pearson website, LinkedIn].  With my 3+ years of experience in software development, including proven proficiency in C# and Angular, I am confident I possess the technical skills and collaborative spirit to make a significant contribution to your team.
+I am writing to express my strong interest in the Software Developer position for the Item Assist product within the ExamDeveloper team at Pearson, as advertised on [Platform where you saw the ad - e.g., Pearson website, LinkedIn].  With my 3+ years of experience in software development, including substantial experience with C#, Angular, and cloud-based development workflows, I am confident I possess the skills and passion to contribute significantly to this exciting project.
 
-My experience aligns closely with the requirements outlined in the job description.  I have a strong foundation in developing and maintaining web applications using C# for backend development and Angular for frontend frameworks. I am also familiar with working in cloud-based environments and understand DevOps workflows, which I believe will be valuable assets in contributing to the ExamDeveloper platform hosted in Microsoft Azure.  My experience with [mention specific project or experience relevant to relational databases, containerized services, or Kubernetes if applicable] further strengthens my suitability for this role.
+My experience aligns well with the requirements outlined in the job description. I have a proven track record of developing and implementing new features, troubleshooting and resolving defects, and writing comprehensive unit tests to ensure code quality.  I'm particularly drawn to the opportunity to work on a product that leverages cutting-edge technology to enhance the user experience for exam creators.  While my background doesn't include direct AI development, I'm conceptually familiar with the technology and eager to contribute to the UI/UX aspects of the Item Assist integration within ExamDeveloper.
 
-While my background doesn't include direct experience with AI development, I understand the broader concepts and appreciate that this role focuses on building the user interface and application experience for the Item Assist features. My focus on creating intuitive and user-friendly interfaces aligns perfectly with the goal of providing Pearson's customers with a seamless experience within ExamDeveloper.
+In my previous role at [Previous Company], I worked extensively with [Mention relevant technologies like C#, Angular, .NET, Azure, SQL Server, Kubernetes, etc. and briefly describe your contributions and achievements.  Quantify your accomplishments whenever possible. For example: "Reduced production bugs by 15% through implementing rigorous testing procedures."].  I'm also comfortable working within Agile development environments and collaborating effectively with cross-functional teams, including QA and product management.  My project, [testp1], further demonstrates my proficiency in [Mention relevant skills showcased in the project].  Additionally, my coursework in networking, coupled with my experience in DevOps workflows, will allow me to seamlessly integrate into your cloud-based development and deployment processes.
 
-In my previous role at [Previous Company], I was responsible for [briefly describe relevant responsibilities and accomplishments, quantifying them whenever possible.  E.g., "developing and implementing new features for a high-traffic web application, resulting in a 20% increase in user engagement"].  I am comfortable working in Agile environments, collaborating closely with cross-functional teams, including QA, and contributing to all phases of the software development lifecycle.
+I am particularly enthusiastic about the prospect of joining Pearson, a company renowned for its innovative approach to education and its commitment to creating impactful learning experiences.  The opportunity to contribute to ExamDeveloper, a leading platform in the exam development space, is truly exciting.
 
-I am particularly drawn to Pearson's commitment to innovation in education and the opportunity to contribute to a product that empowers test creators. I am eager to learn more about the Item Assist project and discuss how my skills and experience can benefit your team.
-
-Thank you for your time and consideration. I look forward to hearing from you soon.
+Thank you for your time and consideration. I have attached my resume for your review and welcome the opportunity to discuss my qualifications further in an interview.
 
 Sincerely,
 

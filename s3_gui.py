@@ -41,6 +41,9 @@ class JobApplication(QWidget):
         self.phone_input = QLineEdit()
         self.phone_input.setPlaceholderText("Enter your phone number")
 
+        self.address_input = QLineEdit()  # **New Address Input**
+        self.address_input.setPlaceholderText("Enter your address")
+
         self.github_input = QLineEdit()
         self.github_input.setPlaceholderText("Enter your GitHub Profile")
 
@@ -69,6 +72,7 @@ class JobApplication(QWidget):
         self.layout.addWidget(self.name_input)
         self.layout.addWidget(self.email_input)
         self.layout.addWidget(self.phone_input)
+        self.layout.addWidget(self.address_input)  # **New Address Field in UI**
         self.layout.addWidget(self.github_input)
         self.layout.addWidget(self.linkedin_input)
         self.layout.addWidget(QLabel("Projects:"))
@@ -116,6 +120,7 @@ class JobApplication(QWidget):
             "name": self.name_input.text(),
             "email": self.email_input.text(),
             "phone": self.phone_input.text(),
+            "address": self.address_input.text(),  
             "github": self.github_input.text(),
             "linkedin": self.linkedin_input.text(),
             "projects": self.projects_input.toPlainText(),
@@ -133,14 +138,15 @@ def save_user_info(user_data):
         return "Name and Email are required."
 
     conn, cursor = open_db()
-    
+
     cursor.execute("""
-        INSERT INTO user_info (name, email, phone, github, linkedin, projects, classes, other)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO user_info (name, email, phone, address, github, linkedin, projects, classes, other)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         user_data["name"],
         user_data["email"],
         user_data["phone"],
+        user_data["address"],  # **Save Address**
         user_data["github"],
         user_data["linkedin"],
         user_data["projects"],
@@ -151,7 +157,7 @@ def save_user_info(user_data):
     conn.commit()
     conn.close()
 
-    return "Success! Saved users' info can be found in jobs.db's user_info table"
+    return "Success! User information saved to jobs.db (user_info table)"
 
 
 if __name__ == "__main__":

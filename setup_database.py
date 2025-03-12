@@ -24,14 +24,14 @@ def create_database(db_name="jobs.db"):  # Accept an optional database name
     """)
 
 
-    # New Table: User Information
+    # Create user_info table if it does not exist
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS user_info (
             user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            profile_name TEXT UNIQUE,
-            name TEXT,
-            email TEXT,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
             phone TEXT,
+            address TEXT,  -- Added the missing column
             github TEXT,
             linkedin TEXT,
             projects TEXT,
@@ -39,6 +39,13 @@ def create_database(db_name="jobs.db"):  # Accept an optional database name
             other TEXT
         )
     """)
+
+    # Check if address column exists, add it if missing
+    cursor.execute("PRAGMA table_info(user_info);")
+    columns = [row[1] for row in cursor.fetchall()]
+    if "address" not in columns:
+        cursor.execute("ALTER TABLE user_info ADD COLUMN address TEXT;")
+        print("Address column added to user_info table.")
 
     conn.commit()
     conn.close()

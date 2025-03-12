@@ -14,7 +14,7 @@ def main():
 
     conn.commit()
     close_db(conn)
-    print("✅ Job data insertion complete.")
+    print("Job data insertion complete.")
 
 if __name__ == "__main__":
     main()

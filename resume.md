@@ -1,55 +1,57 @@
 ```markdown
 # Lily
 
-**(781) 955-4824 | lilu@gmail.com | github.com/lilu | linkedin.com/in/lilu**
+(781) 955-4824 | lilu@gmail.com | github.com/lilu | linkedin.com/in/lilu
+
 
 ## Summary
 
-Highly motivated software developer with 3+ years of experience seeking a Mid-Level Software Developer position on the Item Assist product team at Pearson in Raleigh, NC. Proficient in C# and Angular, with a proven ability to develop and maintain high-quality web applications. Experienced in Agile development methodologies and collaborative team environments. Eager to contribute to the development of innovative features for the ExamDeveloper platform.
+Experienced software developer with a proven track record in building and maintaining web applications. Seeking a Software Developer role at Pearson, specifically contributing to the Item Assist product within the ExamDeveloper team. Proficient in C# and Angular, with experience in Agile development environments and cloud-based deployments. Eager to leverage my skills to enhance user experience and deliver high-quality software solutions.
 
 ## Experience
 
-**(This section should be filled with relevant work experience. Replace the placeholder below with your actual experience.)**
+**(Experience section intentionally left blank due to lack of provided information.  Please add your relevant work experience here.)**
 
-**Software Developer (Example)** | *Company Name* | *City, State* | *Dates of Employment*
-* Developed and maintained web applications using C#, Angular, and other related technologies.
-* Collaborated with cross-functional teams to deliver high-quality software solutions.
-* Implemented unit and integration tests to ensure code quality.
-* Contributed to the improvement of development processes.
+* **Example Entry (replace with your own experience):**
+    * **Software Developer, Company Name (Dates of Employment)**
+    * * Developed and maintained features for X application using Y technologies.
+    * * Improved application performance by Z%.
+    * * Collaborated with cross-functional teams to deliver high-quality software.
+
 
 
 ## Projects
 
-* **testp1:** (Briefly describe the project and your contributions.  Highlight skills relevant to the job description, such as C#, Angular, frontend frameworks, cloud technologies, databases, etc.)  Example:  `Developed a full-stack web application using C# and Angular to manage user data, demonstrating proficiency in frontend development, backend logic, and database integration.`
-
+* **testp1:** (Please provide a brief description of this project and the technologies used.)
 
 ## Education
 
-**(Fill in with your degree information)**
+**(Education section intentionally left blank due to lack of provided information. Please add your degree information here.)**
 
-* **Bachelor of Science in (Your Major, e.g., Computer Science)** | *University Name* | *City, State* | *Year of Graduation*
+* **Example Entry (replace with your own education):**
+    * **Bachelor of Science in Computer Science, University Name (Year of Graduation)**
+
 
 ## Skills
 
-* **Programming Languages:** C#, JavaScript, TypeScript
-* **Frontend Frameworks:** Angular
-* **Databases:**  SQL, (List any others)
-* **Cloud Platforms:** Azure (Mention specific services if applicable, e.g., Kubernetes, SQL Server)
-* **DevOps:** (List any relevant tools and practices)
-* **Agile Development:** Scrum, Kanban (Specify which methodologies you are familiar with)
-* **Version Control:** Git
-* **Other:** (List any other relevant skills, e.g., Unit Testing, UI/UX Design, etc.)
-
-## Courses
-
-* Networking Class
+* **Languages:** C#, JavaScript/TypeScript
+* **Frameworks/Libraries:** Angular,  (React, Svelte - mentioned as desirable in the job description, include if familiar)
+* **Databases:** Relational Databases (SQL Server mentioned in job description)
+* **Tools/Technologies:** Git, Azure, Kubernetes (mentioned in job description), DevOps workflows, Agile methodologies
+* **Other:** Clear Communication Skills, Continuous Improvement Mindset
 
 
-## Awards and Recognition
+## Coursework
 
-(Optional: Add any awards or recognitions you have received)
+* Networking Class (Please provide the full name of the course and the institution where you took it if possible)
+
+
+
+## Keywords (Optional, but helpful for Applicant Tracking Systems)
+
+C#, Angular, .NET, Azure, Kubernetes, SQL Server, Software Developer, Front-End Development, Agile, DevOps, Web Applications, ExamDeveloper, Item Assist, Pearson, Raleigh, NC, Remote
 
 
 ---
-**(Optional) Note:** This resume is tailored for the Software Developer - Item Assist position at Pearson. Adjust it as needed for other applications.  Quantify your accomplishments whenever possible (e.g., "Improved application performance by 15%").  Expand on your project descriptions to showcase relevant skills and experience.
+**Note:** This resume is tailored to the specific job description provided. It is crucial to replace the placeholder text with your actual experience and details, and expand upon the brief project and coursework descriptions to showcase your skills and accomplishments more effectively. Highlighting quantifiable achievements (e.g., "Improved application performance by 15%") will significantly strengthen your application.  Also, tailor the keywords section to specifically reflect keywords used in the job description.
 ```
