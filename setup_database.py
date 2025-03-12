@@ -1,8 +1,8 @@
 import sqlite3
 
-def create_database():
+def create_database(db_name="jobs.db"):  # Accept an optional database name
     """Creates the SQLite database and jobs_listings table if it doesn't exist."""
-    conn = sqlite3.connect("jobs.db")
+    conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -25,11 +25,11 @@ def create_database():
 
     conn.commit()
     conn.close()
-    print("✅ Database and table setup complete.")
+    print(f"Database and table setup complete: {db_name}")
 
-def open_db():
+def open_db(db_name="jobs.db"):
     """Opens a connection to the SQLite database."""
-    conn = sqlite3.connect("jobs.db")
+    conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
     return conn, cursor
 

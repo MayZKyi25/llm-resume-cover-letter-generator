@@ -7,10 +7,10 @@ def main():
     conn, cursor = open_db()
 
     print("Processing rapid_jobs2.json...")
-    add_rapid_api_job_search2_to_db("rapid_jobs2.json", cursor)  # ✅ JSON array
+    add_rapid_api_job_search2_to_db("rapid_jobs2.json", cursor)  # JSON array
 
     print("Processing rapidResults.json...")
-    add_rapid_results_to_db("rapidResults.json", cursor)  # ✅ JSONL format
+    add_rapid_results_to_db("rapidResults.json", cursor)  # JSONL format
 
     conn.commit()
     close_db(conn)
