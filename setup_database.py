@@ -23,13 +23,28 @@ def create_database(db_name="jobs.db"):  # Accept an optional database name
         )
     """)
 
+
+    # New Table: User Information
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS user_info (
+            user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            email TEXT,
+            phone TEXT,
+            github TEXT,
+            linkedin TEXT,
+            projects TEXT,
+            classes TEXT,
+            other TEXT
+        )
+    """)
+
     conn.commit()
     conn.close()
-    print(f"Database and table setup complete: {db_name}")
 
-def open_db(db_name="jobs.db"):
+def open_db():
     """Opens a connection to the SQLite database."""
-    conn = sqlite3.connect(db_name)
+    conn = sqlite3.connect("jobs.db")
     cursor = conn.cursor()
     return conn, cursor
 
