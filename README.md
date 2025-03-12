@@ -4,7 +4,7 @@
 ## sprint 4 
 - s4_gui.py                          # Sprint 4 GUI (allow user to view job postings, select user to generate llm-created resume & cover letter)
 - s4_generate_resume_with_gemini.py  # AI & Markdown and prompt to generate resume &   coverletter
-- s4_test.py                         # Sprint 4 tests (all in one file)
+- s4_test.py                         # Sprint 4 tests 
 
 ## sprint 3
 - s3_gui.py                    # Sprint 3 GUI (keep for reference)
@@ -59,7 +59,7 @@ This launches the GUI where users can enter their details and apply for jobs
 python s4_gui.py
 ***Note: "Gemini API Error: 429 Resource has been exhausted (e.g. check quota)." could occur when tried to access multiple times. 
 
-- 4.Running Tests
+- iv.Running Tests
 pip install pytest
 
 ## Run Tests
