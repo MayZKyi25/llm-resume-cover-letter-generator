@@ -1,6 +1,6 @@
 # ************ COMP490Project1MayZKyi_Sprint 4 ************
 
-# File structure overview - COMP490_Project1_Sprint1_MayZK/ 
+# Overview of File structure- COMP490_Project1_Sprint1_MayZK/ 
 ## sprint 4 
 - s4_gui.py                          # Sprint 4 GUI (allow user to view job postings, select user to generate llm-created resume & cover letter)
 - s4_generate_resume_with_gemini.py  # AI & Markdown and prompt to generate resume &   coverletter
@@ -25,12 +25,16 @@
 - README.md                    # Instructions to run the project sprints
 - requirements.txt             # Dependencies
 
-# In Sprint 4, 
-- User selects a job from the database
-- User selects a profile from the database
-- Sends data to AI and generates a Markdown Cover Letter & Resume
-- Files are saved automatically in pdf format
-- Tests
+# Sprint 4 Overview 
+- Users select a job from the database.
+- Users select a profile from the database (including name, email, phone, address, GitHub, LinkedIn, projects, classes, and other details).
+- The selected job and user data are sent to the Google Gemini API, which generates a personalized Cover Letter and Resume in Markdown format.
+- The Markdown files are automatically converted to PDF using pdflatex (if installed) or an alternative method.
+- The generated Cover Letter and Resume PDFs are saved automatically.
+## Testing:
+- Ensures job and user data are properly retrieved.
+- Verifies API response and document generation.
+- Confirms files are successfully saved in the correct format.
 
 # Setup Instructions
 
@@ -57,11 +61,9 @@ python s4_gui.py
 
 - 4.Running Tests
 pip install pytest
+
 ## Run Tests
 pytest s4_test.py
-This tests the user data-saving function.
-
-
 
 
 
