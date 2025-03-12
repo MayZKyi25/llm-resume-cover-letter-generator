@@ -1,9 +1,8 @@
 import sqlite3
 import sys
-import os
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem,
-    QPushButton, QMessageBox, QListWidget, QTextEdit, QSplitter
+    QPushButton, QMessageBox, QListWidget, QTextEdit
 )
 from s4_generate_resume_with_gemini import generate_ai_documents
 from setup_database import open_db
@@ -90,15 +89,15 @@ class JobApplication(QWidget):
 
     def generate_documents(self):
         """Trigger the AI document generation process with selected job and user."""
-        selected_job = self.job_listbox.curselection()  # Get selected job
-        selected_user = self.user_listbox.curselection()  # Get selected user
+        selected_row = self.job_table.currentRow()  # Get selected job from the table
+        selected_user = self.profile_list.currentRow()  # Get selected user from the profile list
 
-        if not selected_job or not selected_user:
-            messagebox.showerror("Error", "Please select a job and a user profile!")
+        if selected_row == -1 or selected_user == -1:  # Check if no job or user is selected
+            QMessageBox.warning(self, "Error", "Please select a job and a user profile!")
             return
 
-        job_id = self.job_list[selected_job[0]][0]  # Assuming first column is job_id
-        user_id = self.user_list[selected_user[0]][0]  # Assuming first column is user_id
+        job_id = self.job_table.item(selected_row, 0).text()  # Get job_id from the first column
+        user_id = self.profile_list.item(selected_user).text().split(" - ")[0]  # Get user_id from the profile list
 
         generate_ai_documents(job_id, user_id)
 

@@ -88,7 +88,7 @@ def save_markdown_to_pdf(markdown_text, output_filename):
     if shutil.which("pandoc"):
         os.system(f"pandoc {md_filename} -s -o {tex_filename}")
     else:
-        print("❗ Pandoc is not installed! Install it before converting Markdown to LaTeX.")
+        print("Pandoc is not installed! Install it before converting Markdown to LaTeX.")
         return
 
     # Use pdflatex to generate PDF
@@ -97,17 +97,17 @@ def save_markdown_to_pdf(markdown_text, output_filename):
         if os.path.exists("texput.pdf"):
             os.rename("texput.pdf", pdf_filename)
     else:
-        print("❗ pdflatex is not installed! Install it before converting LaTeX to PDF.")
+        print("pdflatex is not installed! Install it before converting LaTeX to PDF.")
 
 def generate_ai_documents(job_id, user_id):
     """Generate and save AI-generated cover letter and resume."""
     job_data, user_data = get_job_and_user_data(job_id, user_id)
 
     if not job_data or not user_data:
-        print("❗ Could not fetch job or user data. Aborting document generation.")
+        print("Could not fetch job or user data. Aborting document generation.")
         return
 
-    print(f"📄 Generating documents for Job: {job_data['title']} | User: {user_data['name']}")
+    print(f"Generating documents for Job: {job_data['title']} | User: {user_data['name']}")
 
     # Sanitize file names
     safe_job_title = job_data['title'].replace(" ", "_").replace("/", "_")
@@ -121,40 +121,40 @@ def generate_ai_documents(job_id, user_id):
     - Keep the tone professional yet enthusiastic.
     - Align the applicant’s skills and experience with the job description.
     - Make it engaging and avoid generic phrases.
-    - Maintain a formal **business letter format** with proper sections.
+    - Maintain a formal business letter format with proper sections.
 
     ---
-    
-    ### **🔹 Applicant Information**
-    - **Full Name:** {user_data['name']}
-    - **Email:** {user_data['email']}
-    - **Phone:** {user_data['phone']}
-    - **LinkedIn:** {user_data['linkedin']}
-    - **GitHub:** {user_data['github']}
-    - **Key Projects:** {user_data['projects']}
-    - **Relevant Coursework:** {user_data['classes']}
-    - **Additional Information:** {user_data['other_info']}
+
+    ### **Applicant Information**
+    - Full Name: {user_data['name']}
+    - Email: {user_data['email']}
+    - Phone: {user_data['phone']}
+    - LinkedIn: {user_data['linkedin']}
+    - GitHub: {user_data['github']}
+    - Key Projects: {user_data['projects']}
+    - Relevant Coursework: {user_data['classes']}
+    - Additional Information: {user_data['other_info']}
 
     ---
-    
-    ### **🔹 Job Information**
-    - **Position:** {job_data['title']}
-    - **Company:** {job_data['company']}
-    - **Location:** {job_data['location']}
-    - **Job Description:**  
+
+    ### **Job Information**
+    - Position: {job_data['title']}
+    - Company: {job_data['company']}
+    - Location: {job_data['location']}
+    - Job Description:  
     {job_data['description']}
 
     ---
-    
+
     **Cover Letter Format:**
-    - **Use a professional tone** but keep it engaging.
-    - **Start with a strong opening paragraph** that expresses enthusiasm and interest in the role.
-    - **The second paragraph** should align the applicant’s skills and projects with the job requirements.
-    - **The third paragraph** should highlight relevant achievements or experiences.
-    - **The closing paragraph** should express eagerness to interview and include a polite call to action.
+    - Use a professional tone but keep it engaging.
+    - Start with a strong opening paragraph that expresses enthusiasm and interest in the role.
+    - The second paragraph should align the applicant’s skills and projects with the job requirements.
+    - The third paragraph should highlight relevant achievements or experiences.
+    - The closing paragraph should express eagerness to interview and include a polite call to action.
 
     **Ensure the cover letter follows this format:**
-    
+
     **[Full Name]**  
     [Your Address]  
     [Phone Number]  
@@ -189,100 +189,106 @@ def generate_ai_documents(job_id, user_id):
     if cover_letter.strip():
         save_markdown_to_pdf(cover_letter, f"{safe_user_name}_cover_letter")
     else:
-        print("❗ Cover letter generation failed.")
+        print("Cover letter generation failed.")
 
     # **Generate Resume**
     resume_prompt = f"""
-    You are an expert resume writer and career strategist. Your task is to generate a **highly professional, ATS-optimized, and well-structured resume** tailored for the **Software Developer position at Pearson**. The resume must be **concise, engaging, and aligned** with the job description.
+    You are an expert resume writer and career strategist. Your task is to generate a highly professional, ATS-optimized, and well-structured resume tailored for the Software Developer position at Pearson. The resume must be concise, engaging, and aligned with the job description.
 
     ---
 
-    ### **📌 Instructions**
-    - The resume should be **formatted in Markdown**.
-    - Use **clear section headings** (`## Summary`, `## Experience`, etc.).
-    - Keep the **tone professional, concise, and results-oriented**.
-    - Ensure the content is **ATS-friendly** (Applicant Tracking System compliant).
-    - Include **bullet points** to highlight key achievements and skills.
-    - Use **powerful action verbs** (e.g., "Developed", "Implemented", "Optimized").
-    - If experience is missing, focus on **projects** to demonstrate expertise.
-    - Ensure **all provided information** is correctly included.
+    ### **Instructions**
+    - The resume should be formatted in Markdown.
+    - Use clear section headings (## Summary, ## Experience, etc.).
+    - Keep the tone professional, concise, and results-oriented.
+    - Ensure the content is ATS-friendly (Applicant Tracking System compliant).
+    - Include bullet points to highlight key achievements and skills.
+    - Use powerful action verbs (e.g., "Developed", "Implemented", "Optimized").
+    - If experience is missing, focus on projects to demonstrate expertise.
+    - Ensure all provided information is correctly included.
 
     ---
 
-    ### **🔹 Candidate Profile**
-    - **Name:** {user_data['name']}
-    - **Email:** {user_data['email']}
-    - **Phone:** {user_data['phone']}
-    - **LinkedIn:** {user_data['linkedin']}
-    - **GitHub:** {user_data['github']}
-    - **Key Projects:** {user_data['projects']}
-    - **Relevant Coursework:** {user_data['classes']}
-    - **Additional Info:** {user_data['other_info']}
+    ### **Candidate Profile**
+    - Name: {user_data['name']}
+    - Email: {user_data['email']}
+    - Phone: {user_data['phone']}
+    - LinkedIn: {user_data['linkedin']}
+    - GitHub: {user_data['github']}
+    - Key Projects: {user_data['projects']}
+    - Relevant Coursework: {user_data['classes']}
+    - Additional Info: {user_data['other_info']}
 
     ---
 
-    ### **🔹 Job Information**
-    - **Position:** {job_data['title']}
-    - **Company:** {job_data['company']}
-    - **Location:** {job_data['location']}
-    - **Job Description:**  
+    ### **Job Information**
+    - Position: {job_data['title']}
+    - Company: {job_data['company']}
+    - Location: {job_data['location']}
+    - Job Description:  
     {job_data['description']}
 
     ---
 
-    ### **✍️ Resume Structure**
+    ### **Resume Structure**
     Ensure the resume follows this format:
 
     # [Full Name]  
-    📞 [Phone Number] | ✉️ [Email] | 🔗 [GitHub] | 🔗 [LinkedIn]  
+    [Phone Number] | [Email] | [GitHub] | [LinkedIn]  
 
     ## **Summary**  
-    A concise **2-3 sentence professional summary** that showcases **years of experience, expertise in key technologies (C#, Angular, Azure, Kubernetes), and career goals** related to the Pearson job role.  
+    A concise 2-3 sentence professional summary that showcases years of experience, expertise in key technologies (C#, Angular, Azure, Kubernetes), and career goals related to the Pearson job role.  
 
     ## **Experience**  
     **[Job Title]** – [Company Name] *(Month/Year – Present)*  
-    - **Start each bullet point with a strong action verb** (e.g., Developed, Implemented, Optimized).  
-    - Quantify impact wherever possible (e.g., "Optimized system performance by **30%**").  
-    - Showcase experience with **C#, Angular, cloud technologies, Agile development**.  
+    - Start each bullet point with a strong action verb (e.g., Developed, Implemented, Optimized).  
+    - Quantify impact wherever possible (e.g., "Optimized system performance by 30%").  
+    - Showcase experience with C#, Angular, cloud technologies, Agile development.  
 
     ## **Projects** *(Only if work experience is missing or for additional achievements)*  
     ### **Project Name (e.g., testp1)**  
-    🚀 **Technologies:** [C#, Angular, SQL Server, Azure, Kubernetes]  
-    - Describe the project in **one or two concise sentences**.  
-    - Highlight its **relevance to Pearson’s Item Assist role**.  
-    - Mention measurable impact (e.g., **"Reduced processing time by 40%"**).  
+    Technologies: [C#, Angular, SQL Server, Azure, Kubernetes]  
+    - Describe the project in one or two concise sentences.  
+    - Highlight its relevance to Pearson’s Item Assist role.  
+    - Mention measurable impact (e.g., "Reduced processing time by 40%").  
 
     ## **Education**  
-    🎓 **[Degree Title]** – [University Name] *(Graduation Year)*  
+    **[Degree Title]** – [University Name] *(Graduation Year)*  
     Relevant Courses: Networking, Database Systems, Cloud Computing, Software Engineering  
 
     ## **Skills**  
-    - **Languages:** C#, JavaScript/TypeScript  
-    - **Frontend:** Angular, React (if applicable)  
-    - **Backend:** .NET, REST APIs, SQL Server  
-    - **Cloud & DevOps:** Microsoft Azure, Kubernetes, Docker, CI/CD  
-    - **Development Practices:** Agile, Unit Testing, API Development  
+    - Languages: C#, JavaScript/TypeScript  
+    - Frontend: Angular, React (if applicable)  
+    - Backend: .NET, REST APIs, SQL Server  
+    - Cloud & DevOps: Microsoft Azure, Kubernetes, Docker, CI/CD  
+    - Development Practices: Agile, Unit Testing, API Development  
 
     ## **Certifications & Awards** *(if applicable)*  
-    🏆 [Certification Name] – [Issuing Organization]  
-    🏆 [Hackathon/Competition Recognition]  
+    [Certification Name] – [Issuing Organization]  
+    [Hackathon/Competition Recognition]  
 
     ## **Additional Information** *(Optional)*  
-    - Open-source contributor for [relevant technology projects].  
-    - Passionate about **building intuitive UI/UX** and **collaborating with cross-functional teams**.  
+    - Open-source contributor for relevant technology projects.  
+    - Passionate about building intuitive UI/UX and collaborating with cross-functional teams.  
 
     ---
 
-    ### **🔹 Additional Notes**
-    - **If candidate lacks work experience, emphasize relevant projects instead.**
-    - **Use strong, active language to showcase impact and skills.**
-    - **Ensure the resume is ATS-friendly and formatted cleanly in Markdown.**
+    ### **Additional Notes**
+    - If candidate lacks work experience, emphasize relevant projects instead.
+    - Use strong, active language to showcase impact and skills.
+    - Ensure the resume is ATS-friendly and formatted cleanly in Markdown.
     """
 
+    resume = generate_gemini_response(resume_prompt)
+
+    if resume.strip():
+        save_markdown_to_pdf(resume, f"{safe_user_name}_resume")
+    else:
+        print("Resume generation failed.")
 
 if __name__ == "__main__":
-    test_job_id = "E9NcqHJvfLKXQyonAAAAAA=="  
-    test_user_id = "2"  
+    test_job_id = "9ejRCK8AY7OMi9nyAAAAAA=="  
+    test_user_id = "3"  
 
     print(f"Generating documents for Job ID: {test_job_id}, User ID: {test_user_id}")
     generate_ai_documents(test_job_id, test_user_id)
