@@ -3,6 +3,7 @@ from tkinter import messagebox
 from s3_user_db import save_user_info
 from s3_job_fetcher import fetch_jobs, get_job_details
 
+
 def create_ui():
     root = tk.Tk()
     root.title("Job Finder App")
@@ -19,7 +20,12 @@ def create_ui():
     job_details_frame = tk.Frame(root)
     job_details_frame.pack(pady=10)
 
-    label_job_details = tk.Label(job_details_frame, text="Select a job to see details.", justify=tk.LEFT, anchor="w", wraplength=500)
+    label_job_details = tk.Label(
+        job_details_frame,
+        text="Select a job to see details.",
+        justify=tk.LEFT,
+        anchor="w",
+        wraplength=500)
     label_job_details.pack()
 
     def show_job_details(event):
@@ -66,6 +72,7 @@ def create_ui():
     tk.Button(root, text="Save Info", command=save_info).pack(pady=10)
 
     return root
+
 
 if __name__ == "__main__":
     app = create_ui()

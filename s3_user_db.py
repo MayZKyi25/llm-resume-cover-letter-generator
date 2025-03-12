@@ -2,6 +2,7 @@ import sqlite3
 
 DB_NAME = "job_postings.db"
 
+
 def create_user_info_table():
     """Creates the user_info table if it doesn't exist."""
     with sqlite3.connect(DB_NAME) as conn:
@@ -21,6 +22,7 @@ def create_user_info_table():
         ''')
         conn.commit()
 
+
 def save_user_info(data):
     """Saves user information to the database."""
     if not data["name"] or not data["email"]:
@@ -31,11 +33,12 @@ def save_user_info(data):
         cursor.execute('''
             INSERT INTO user_info (name, email, phone, github, linkedin, projects, classes, other_info)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        ''', (data["name"], data["email"], data["phone"], data["github"], 
+        ''', (data["name"], data["email"], data["phone"], data["github"],
               data["linkedin"], data["projects"], data["classes"], data["other_info"]))
         conn.commit()
 
     return "Success! Saved users' info can be found in job_postings.db's user_info table"
+
 
 def get_user_info(email):
     """Fetch user information by email."""
@@ -64,5 +67,3 @@ def get_user_info(email):
 if __name__ == "__main__":
     create_user_info_table()
     print("User database initialized.")
-
-

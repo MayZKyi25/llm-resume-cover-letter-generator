@@ -77,5 +77,3 @@ def test_database_insertion(setup_database):
 
     os.remove(test_json)
     assert result is not None
-
-

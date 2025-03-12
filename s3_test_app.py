@@ -12,7 +12,7 @@
 #     with sqlite3.connect(DB_NAME) as conn:
 #         cursor = conn.cursor()
 #         cursor.execute('''
-#             SELECT id, title, company, location, employment_type, date_posted, salary_range, description, job_provider, job_url 
+#             SELECT id, title, company, location, employment_type, date_posted, salary_range, description, job_provider, job_url
 #             FROM job_postings WHERE id=?
 #         ''', (job_id,))
 #         job = cursor.fetchone()
@@ -30,8 +30,8 @@
 #             "job_provider": job[8],
 #             "job_url": job[9]
 #         }
-    
-#     return None  
+
+#     return None
 
 
 # # Test saving user info
@@ -48,7 +48,9 @@
 #     }
 
 #     save_result = save_user_info(test_user_data)
-#     assert save_result == "Success! Saved users' info can be found in job_postings.db's user_info table"  # Adjust based on actual return value
+# assert save_result == "Success! Saved users' info can be found in
+# job_postings.db's user_info table"  # Adjust based on actual return
+# value
 
 #     # Verify the data is stored correctly
 #     stored_user_data = get_user_info(test_user_data["email"])
@@ -62,7 +64,7 @@
 #     with sqlite3.connect(DB_NAME) as conn:
 #         cursor = conn.cursor()
 #         cursor.execute('''
-#             INSERT OR IGNORE INTO job_postings (id, title, company, location, description) 
+#             INSERT OR IGNORE INTO job_postings (id, title, company, location, description)
 #             VALUES (1, 'Software Engineer', 'TechCorp', 'Remote', 'Develop software applications.')
 #         ''')
 #         conn.commit()
@@ -77,23 +79,37 @@ from s3_user_db import save_user_info, get_user_info
 DB_NAME = "job_postings.db"
 
 # Fix for get_job_details returning a tuple instead of a dictionary
+
+
 def get_job_details(job_id):
     """Fetch full job details for a given job ID and return as a dictionary."""
     with sqlite3.connect(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute('''
-            SELECT id, title, company, location, employment_type, date_posted, salary_range, description, job_provider, job_url 
+            SELECT id, title, company, location, employment_type, date_posted, salary_range, description, job_provider, job_url
             FROM job_postings WHERE id=?
         ''', (job_id,))
         job = cursor.fetchone()
 
     if job:
-        keys = ["id", "title", "company", "location", "employment_type", "date_posted", "salary_range", "description", "job_provider", "job_url"]
+        keys = [
+            "id",
+            "title",
+            "company",
+            "location",
+            "employment_type",
+            "date_posted",
+            "salary_range",
+            "description",
+            "job_provider",
+            "job_url"]
         return dict(zip(keys, job))  # Convert tuple to dictionary properly
 
-    return None  
+    return None
 
 # Fix test to match actual error messages
+
+
 @pytest.mark.parametrize("test_user_data, expected_output", [
     (  # Valid user data
         {
@@ -132,7 +148,8 @@ def get_job_details(job_id):
             "classes": "CS104",
             "other_info": "Cybersecurity expert"
         },
-        "Success! Saved users' info can be found in job_postings.db's user_info table"  # Update if phone validation is added
+        # Update if phone validation is added
+        "Success! Saved users' info can be found in job_postings.db's user_info table"
     )
 ])
 def test_save_user_info(test_user_data, expected_output):
@@ -141,15 +158,18 @@ def test_save_user_info(test_user_data, expected_output):
     assert save_result == expected_output
 
 # Insert a test job into the database
+
+
 def insert_test_job():
     """Ensure a test job exists before running tests."""
     with sqlite3.connect(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT OR IGNORE INTO job_postings (id, title, company, location, description) 
+            INSERT OR IGNORE INTO job_postings (id, title, company, location, description)
             VALUES (1, 'Software Engineer', 'TechCorp', 'Remote', 'Develop software applications.')
         ''')
         conn.commit()
+
 
 insert_test_job()
 print("Test job inserted if not already present.")
