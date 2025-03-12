@@ -1,6 +1,6 @@
 # ************ COMP490Project1MayZKyi_Sprint 4 ************
 
-# File structure overview - COMP490_Project1_Sprint1_MayZK/
+# File structure overview - COMP490_Project1_Sprint1_MayZK/ 
 ## sprint 4 
 - s4_gui.py                          # Sprint 4 GUI (allow user to view job postings, select user to generate llm-created resume & cover letter)
 - s4_generate_resume_with_gemini.py  # AI & Markdown and prompt to generate resume &   coverletter
@@ -34,32 +34,32 @@
 
 # Setup Instructions
 
-## 0. Clone the Repository
+- 0. Clone the Repository
 git clone https://github.com/mkyi-bsu/COMP490Project1MayZKyi.git
 cd COMP490Project1MayZKyi
-## 1. Create and Activate Virtual Environment
+- 1. Create and Activate Virtual Environment
 python -m venv .venv
 source .venv/bin/activate  # For Mac/Linux
-# On Windows use: .venv\Scripts\activate
+On Windows use: .venv\Scripts\activate
 ## Install Dependencies
-pip install -r requirements.txt
-## 1. Setup the Database
+- 0. pip install -r requirements.txt
+- 1. Setup the Database
 python setup_database.py
 This populates jobs.db with job listings.
 
-## 2. Run s3_gui.py to enter user info then saved the the entered user data into user_info table under jobs.db
+- 2. Run s3_gui.py to enter user info then saved the the entered user data into user_info table under jobs.db
 python s3_gui.py
 This launches the GUI where users can enter their details and apply for jobs 
 
-## 3. Run python s4_gui.py to selected the job id and user to create LLM-generated cover letter and resume which will be saved to .pdf format using pdflatex
+- 3. Run python s4_gui.py to selected the job id and user to create LLM-generated cover letter and resume which will be saved to .pdf format using pdflatex
 python s4_gui.py
 ***Note: "Gemini API Error: 429 Resource has been exhausted (e.g. check quota)." could occur when tried to access multiple times. 
 
-# 4.Running Tests
+- 4.Running Tests
 pip install pytest
 ## Run Tests
 pytest s4_test.py
-This tests the user data saving function.
+This tests the user data-saving function.
 
 
 
