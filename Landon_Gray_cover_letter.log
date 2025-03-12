@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  12 MAR 2025 08:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  12 MAR 2025 08:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -449,15 +449,15 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 12227 strings out of 473190
- 190171 string characters out of 5715801
- 632667 words of memory out of 5000000
+ 12233 strings out of 473190
+ 190229 string characters out of 5715801
+ 633667 words of memory out of 5000000
  35347 multiletter control sequences out of 15000+600000
- 563337 words of font info for 47 fonts, out of 8000000 for 9000
+ 563586 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,5n,93p,1021b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb>
-Output written on Landon_Gray_cover_letter.pdf (1 page, 39277 bytes).
+Output written on Landon_Gray_cover_letter.pdf (1 page, 38255 bytes).
 PDF statistics:
  19 PDF objects out of 1000 (max. 8388607)
  13 compressed objects within 1 object stream
