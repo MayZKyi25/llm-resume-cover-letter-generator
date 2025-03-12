@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (
 from s4_generate_resume_with_gemini import generate_ai_documents
 from setup_database import open_db
 
-DB_NAME = "jobs.db"  # Ensure this matches your actual database name
+DB_NAME = "jobs.db"  
 
 class JobApplication(QWidget):
     def __init__(self):
