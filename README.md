@@ -1,4 +1,29 @@
+# ************ COMP490Project1MayZKyi_Sprint 4 ************
+
+File structure overview
+COMP490_Project1_Sprint1_MayZK/
+│── s3_gui.py                  # Sprint 3 GUI (keep for reference)
+│── s4_gui.py                  # Sprint 4 GUI (new, updated version)
+│── setup_database.py           # Database setup
+│── job_data_handler.py         # Job handling logic
+│── s4_generate_documents.py    # AI & Markdown handling
+│── s4_test_user_data.py        # Sprint 4 tests (all in one file)
+│── main.py                     # Entry point for running the app
+│── jobs.db                      # SQLite database
+│── README.md                    # Instructions
+│── requirements.txt             # Dependencies
+
+In Sprint 4, 
+- User selects a job from the database
+- User selects a profile from the database
+- Sends data to AI and generates a Markdown Cover Letter & Resume
+- Files are saved automatically
+
+
+
+
 # ************ COMP490Project1MayZKyi_Sprint 3 ************
+
 # Interactive Job Selection and User Data Entry
 # 1. Overview of Sprint 3
 - Sprint 3 introduces an interactive interface that allows users to:

@@ -28,6 +28,7 @@ def create_database(db_name="jobs.db"):  # Accept an optional database name
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS user_info (
             user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            profile_name TEXT UNIQUE,
             name TEXT,
             email TEXT,
             phone TEXT,
