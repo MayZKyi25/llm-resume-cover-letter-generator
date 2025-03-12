@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem,
     QPushButton, QMessageBox, QListWidget, QTextEdit, QSplitter
 )
-from s4_generate_documents import generate_ai_documents
+from s4_generate_resume_with_gemini import generate_ai_documents
 from setup_database import open_db
 
 DB_NAME = "jobs.db"  # Ensure this matches your actual database name
@@ -89,20 +89,18 @@ class JobApplication(QWidget):
             self.profile_list.addItem(f"{profile[0]} - {profile[1]}")
 
     def generate_documents(self):
-        """Fetch selected job and profile, then generate AI documents."""
-        selected_row = self.job_table.currentRow()
-        selected_profile = self.profile_list.currentItem()
+        """Trigger the AI document generation process with selected job and user."""
+        selected_job = self.job_listbox.curselection()  # Get selected job
+        selected_user = self.user_listbox.curselection()  # Get selected user
 
-        if selected_row == -1 or not selected_profile:
-            QMessageBox.warning(self, "Selection Error", "Please select a job and a user profile!")
+        if not selected_job or not selected_user:
+            messagebox.showerror("Error", "Please select a job and a user profile!")
             return
 
-        job_id = self.job_table.item(selected_row, 0).text()  # Extract job_id
-        user_id = selected_profile.text().split(" - ")[0]  # Extract user_id
+        job_id = self.job_list[selected_job[0]][0]  # Assuming first column is job_id
+        user_id = self.user_list[selected_user[0]][0]  # Assuming first column is user_id
 
-        generate_ai_documents(job_id, user_id)  # Call LLM function
-
-        QMessageBox.information(self, "Success", "Cover Letter and Resume generated successfully!")
+        generate_ai_documents(job_id, user_id)
 
 
 if __name__ == "__main__":
