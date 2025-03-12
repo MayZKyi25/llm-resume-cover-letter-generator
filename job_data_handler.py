@@ -1,6 +1,6 @@
 import json
 import sqlite3
-import re
+import re  # Fix for splitting JSON arrays correctly
 
 def add_rapid_api_job_search2_to_db(file_name: str, cursor: sqlite3.Cursor):
     """Parses `rapid_jobs2.json` (concatenated JSON arrays) and inserts jobs into the database."""
@@ -12,7 +12,7 @@ def add_rapid_api_job_search2_to_db(file_name: str, cursor: sqlite3.Cursor):
     with open(file_name, "r", encoding="utf-8") as data_file:
         raw_content = data_file.read().strip()  # Read entire content
 
-        #  Fix for splitting concatenated JSON arrays correctly
+        # Fix for splitting concatenated JSON arrays correctly
         json_chunks = re.split(r"]\s*\[", raw_content)  # Splitting on `][` safely
 
         for i, chunk in enumerate(json_chunks):
@@ -42,7 +42,7 @@ def add_rapid_api_job_search2_to_db(file_name: str, cursor: sqlite3.Cursor):
                     )
                     cursor.execute(insert_statement, job_tuple)
             except json.JSONDecodeError as e:
-                print(f"⚠️ Skipping invalid JSON chunk {i} in {file_name}: {e}")
+                print(f" Skipping invalid JSON chunk {i} in {file_name}: {e}")
 
 def add_rapid_results_to_db(file_name: str, cursor: sqlite3.Cursor):
     """Parses `rapidResults.json` (JSONL format) and inserts jobs into the database."""
@@ -78,7 +78,7 @@ def add_rapid_results_to_db(file_name: str, cursor: sqlite3.Cursor):
                 )
                 cursor.execute(insert_statement, job_tuple)
             except json.JSONDecodeError as e:
-                print(f"⚠️ Skipping invalid JSON on line {line_number} in {file_name}: {e}")
+                print(f"Skipping invalid JSON on line {line_number} in {file_name}: {e}")
 
 def get_jobs_from_db(cursor: sqlite3.Cursor):
     """Retrieves all jobs from the database."""
@@ -97,4 +97,3 @@ def get_jobs_from_db(cursor: sqlite3.Cursor):
         for result in results
     ]
     return jobs_listings
-
