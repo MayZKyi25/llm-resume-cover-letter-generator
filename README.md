@@ -2,28 +2,28 @@
 
 # File structure overview - COMP490_Project1_Sprint1_MayZK/
 ## sprint 4 
-│── s4_gui.py                          # Sprint 4 GUI (allow user to view job postings, select user to generate llm-created resume & cover letter)
-│── s4_generate_resume_with_gemini.py  # AI & Markdown and prompt to generate resume &   coverletter
-│── s4_test.py                         # Sprint 4 tests (all in one file)
+- s4_gui.py                          # Sprint 4 GUI (allow user to view job postings, select user to generate llm-created resume & cover letter)
+- s4_generate_resume_with_gemini.py  # AI & Markdown and prompt to generate resume &   coverletter
+- s4_test.py                         # Sprint 4 tests (all in one file)
 
 ## sprint 3
-│── s3_gui.py                    # Sprint 3 GUI (keep for reference)
-│── setup_database.py            # Database setup
-│── job_data_handler.py          # Job handling logic
-│── s3_test.py    
+- s3_gui.py                    # Sprint 3 GUI (keep for reference)
+- setup_database.py            # Database setup
+- job_data_handler.py          # Job handling logic
+- s3_test.py    
 
 ## sprint 2
-│── setup_database.py                     # SQLite database creation
-│── job_data_handler.py                   # parsing complicated json data to populate to jobs.db table
-│── jobs.db                               # SQLite database for all job postings from two json files
+- setup_database.py                     # SQLite database creation
+- job_data_handler.py                   # parsing complicated json data to populate to jobs.db table
+- jobs.db                               # SQLite database for all job postings from two json files
 
 ## sprint 1
-│── create_resume.py                           
+- create_resume.py                           
 
 ## others
-│── main.py                      # Entry point for running the app
-│── README.md                    # Instructions to run the project sprints
-│── requirements.txt             # Dependencies
+- main.py                      # Entry point for running the app
+- README.md                    # Instructions to run the project sprints
+- requirements.txt             # Dependencies
 
 # In Sprint 4, 
 - User selects a job from the database
