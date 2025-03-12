@@ -131,9 +131,9 @@ def generate_ai_documents(job_id, user_id):
     - Phone: {user_data['phone']}
     - LinkedIn: {user_data['linkedin']}
     - GitHub: {user_data['github']}
-    - Key Projects: {user_data['projects']}
-    - Relevant Coursework: {user_data['classes']}
-    - Additional Information: {user_data['other_info']}
+    - Key Projects: {user_data.get('projects', 'No projects listed')}
+    - Relevant Coursework: {user_data.get('classes', 'No coursework listed')}
+    - Additional Information: {user_data.get('other_info', 'No additional information')}
 
     ---
 
@@ -178,10 +178,15 @@ def generate_ai_documents(job_id, user_id):
 
     [Achievements paragraph - mention a key challenge, solved problem, or unique value]  
 
-    [Closing paragraph - express eagerness for an interview, call to action]  
+    [Closing paragraph - express eagerness for an interview, call to action]
 
     **Sincerely,**  
     {user_data['name']}  
+    \n\n[Your Address]  
+    [Phone Number]  
+    [Email]  
+    [LinkedIn]  
+    [GitHub]
     """
 
     cover_letter = generate_gemini_response(cover_letter_prompt)
@@ -190,6 +195,7 @@ def generate_ai_documents(job_id, user_id):
         save_markdown_to_pdf(cover_letter, f"{safe_user_name}_cover_letter")
     else:
         print("Cover letter generation failed.")
+
 
     # **Generate Resume**
     resume_prompt = f"""
@@ -273,9 +279,9 @@ def generate_ai_documents(job_id, user_id):
 
     ---
 
-    ### **Additional Notes**
+    ### **Others**
     - If candidate lacks work experience, emphasize relevant projects instead.
-    - Use strong, active language to showcase impact and skills.
+    - Showcase impact and skills.
     - Ensure the resume is ATS-friendly and formatted cleanly in Markdown.
     """
 

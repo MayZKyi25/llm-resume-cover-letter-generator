@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  12 MAR 2025 07:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  12 MAR 2025 08:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -431,45 +431,30 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 Package hyperref Info: Link coloring OFF on input line 52.
 
-Overfull \hbox (10.35866pt too wide) in paragraph at lines 56--58
-\T1/lmr/m/n/10 (-20) 9997778888 | emily@gmail.com | github.com/emilydev | linke
-din.com/in/emilycarter 
- []
-
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-03.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
 
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
-al/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/202
-5/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-
-[2] (./Emily_Carter_resume.aux)
+al/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
+(./Emily_Carter_resume.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 12339 strings out of 473190
- 191990 string characters out of 5715801
- 635143 words of memory out of 5000000
- 35414 multiletter control sequences out of 15000+600000
- 584259 words of font info for 67 fonts, out of 8000000 for 9000
+ 12213 strings out of 473190
+ 189961 string characters out of 5715801
+ 623652 words of memory out of 5000000
+ 35347 multiletter control sequences out of 15000+600000
+ 562756 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,5n,93p,1016b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/lo
-cal/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texliv
-e/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2025/texm
-f-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on Emily_Carter_resume.pdf (2 pages, 111200 bytes).
+ 83i,5n,93p,1016b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb>
+Output written on Emily_Carter_resume.pdf (1 page, 26666 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
- 16457 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 19 PDF objects out of 1000 (max. 8388607)
+ 13 compressed objects within 1 object stream
+ 2 named destinations out of 1000 (max. 500000)
+ 2049 words of extra memory for PDF output out of 10000 (max. 10000000)
 

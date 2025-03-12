@@ -1,0 +1,108 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+Sophia Zhang\\
+{[}Your Address{]}\\
+123-456-7890\\
+sophia@example.com\\
+linkedin.com/in/sophia\\
+github.com/sophia
+
+{[}Date{]}
+
+Hiring Team\\
+Tech Corp\\
+San Francisco, CA
+
+Subject: Application for Software Engineer at Tech Corp
+
+Dear Hiring Team,
+
+I am writing to express my enthusiastic interest in the Software
+Engineer position at Tech Corp, as advertised on {[}Platform where you
+saw the ad - e.g., company website, LinkedIn{]}. Tech Corp's innovative
+work in {[}Mention a specific area of Tech Corp's work that interests
+you, e.g., cloud computing, AI development{]} has long been a source of
+inspiration for me, and I am particularly drawn to the company's
+commitment to {[}Mention a company value that resonates with you, e.g.,
+cutting-edge technology, collaborative culture{]}. The opportunity to
+contribute to such a forward-thinking organization would be a privilege.
+
+While the job description mentions software development as a key aspect
+of this role, I would welcome the opportunity to discuss my specific
+skills and how they align with your needs in more detail. I am eager to
+learn more about the technical challenges Tech Corp is tackling and
+confident I can contribute effectively to your team. My proactive
+approach to problem-solving and my dedication to producing high-quality
+code are qualities I believe would be valuable assets in this role.
+
+Although I am early in my career, I am a highly motivated and quick
+learner. I am eager to embrace new challenges and contribute to a team
+environment. My commitment to continuous improvement drives me to stay
+updated with the latest technologies and best practices in software
+engineering, ensuring I can deliver effective solutions.
+
+I am excited about the prospect of discussing my qualifications further
+in an interview. Thank you for your time and consideration. I look
+forward to hearing from you soon.
+
+Sincerely,\\
+Sophia Zhang
+
+{[}Your Address{]}\\
+123-456-7890\\
+sophia@example.com\\
+linkedin.com/in/sophia\\
+github.com/sophia
+
+\end{document}
