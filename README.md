@@ -1,197 +1,103 @@
-# ************ COMP490Project1MayZKyi_Sprint 4 ************
+# LLM Resume & Cover Letter Generator
 
-# Overview of File structure- COMP490_Project1_Sprint1_MayZK/ 
-## sprint 4 
-- s4_gui.py                          # Sprint 4 GUI (allow user to view job postings, select user to generate llm-created resume & cover letter)
-- s4_generate_resume_with_gemini.py  # AI & Markdown and prompt to generate resume &   coverletter
-- s4_test.py                         # Sprint 4 tests 
+This project is an AI-powered application that generates personalized, ATS-optimized resumes and cover letters using Google Gemini AI. Built as my senior capstone at Bridgewater State University, it demonstrates a full-stack development workflow—from data ingestion and database design to LLM prompt engineering and web deployment.
 
-## sprint 3
-- s3_gui.py                    # Sprint 3 GUI (keep for reference)
-- setup_database.py            # Database setup
-- job_data_handler.py          # Job handling logic
-- s3_test.py    
+## Project Overview
 
-## sprint 2
-- setup_database.py                     # SQLite database creation
-- job_data_handler.py                   # parsing complicated json data to populate to jobs.db table
-- jobs.db                               # SQLite database for all job postings from two json files
+The tool allows a user to:
+1. Select a job posting from a local SQLite database.
+2. Enter or select a user profile (name, contact details, GitHub, LinkedIn, projects, coursework).
+3. Send both job and profile data to Google Gemini via a structured prompt.
+4. Receive back a Markdown-formatted resume and cover letter.
+5. Convert those Markdown files to PDF (using pdflatex or a fallback).
+6. Save the generated PDFs to disk.
 
-## sprint 1
-- create_resume.py                           
+## Features
 
-## others
-- main.py                      # Entry point for running the app
-- README.md                    # Instructions to run the project sprints
-- requirements.txt             # Dependencies
+- End-to-end pipeline for ATS-friendly document creation  
+- SQLite database for storing job postings and user profiles  
+- Streamlit web interface for interactive selection and data entry  
+- Prompt engineering techniques to optimize for keyword matching  
+- Markdown-to-PDF conversion for professional formatting  
+- Automated tests for core functionality  
 
-# Sprint 4 Overview 
-- Users select a job from the database.
-- Users select a profile from the database (including name, email, phone, address, GitHub, LinkedIn, projects, classes, and other details).
-- The selected job and user data are sent to the Google Gemini API, which generates a personalized Cover Letter and Resume in Markdown format.
-- The Markdown files are automatically converted to PDF using pdflatex (if installed) or an alternative method.
-- The generated Cover Letter and Resume PDFs are saved automatically.
-## Testing:
-- Ensures job and user data are properly retrieved.
-- Verifies API response and document generation.
-- Confirms files are successfully saved in the correct format.
+## File Structure
 
-# Setup Instructions
-
-- 0. Clone the Repository
-git clone https://github.com/mkyi-bsu/COMP490Project1MayZKyi.git
-cd COMP490Project1MayZKyi
-- 1. Create and Activate Virtual Environment
-python -m venv .venv
-source .venv/bin/activate  # For Mac/Linux
-On Windows use: .venv\Scripts\activate
-## Install Dependencies
-- 0. pip install -r requirements.txt
-- 1. Setup the Database
-python setup_database.py
-This populates jobs.db with job listings.
-
-- 2. Run s3_gui.py to enter user info then saved the the entered user data into user_info table under jobs.db
-python s3_gui.py
-This launches the GUI where users can enter their details and apply for jobs 
-
-- 3. Run python s4_gui.py to selected the job id and user to create LLM-generated cover letter and resume which will be saved to .pdf format using pdflatex
-python s4_gui.py
-***Note: "Gemini API Error: 429 Resource has been exhausted (e.g. check quota)." could occur when tried to access multiple times. 
-
-- iv.Running Tests
-pip install pytest
-
-## Run Tests
-pytest s4_test.py
+llm-resume-cover-letter-generator/
+├── sprint1/
+│ └── create_resume.py
+├── sprint2/
+│ ├── setup_database.py
+│ └── job_data_handler.py
+├── sprint3/
+│ ├── s3_gui.py
+│ └── s3_test.py
+├── sprint4/
+│ ├── s4_gui.py
+│ ├── s4_generate_resume_with_gemini.py
+│ └── s4_test.py
+├── jobs.db
+├── main.py
+├── requirements.txt
+├── README.md
+└── LICENSE
 
 
+## Getting Started
+
+1. **Clone the repository**  
+   git clone https://github.com/mkyi-bsu/llm-resume-cover-letter-generator.git
+   cd llm-resume-cover-letter-generator
+   
+2. **Create and activate a virtual environment**
+    python -m venv .venv
+    source .venv/bin/activate      # macOS/Linux
+    .venv\Scripts\activate         # Windows
+
+3. **Install dependencies**
+   pip install -r requirements.txt
+
+4. **Initialize the database**
+   python sprint2/setup_database.py
+ 
+5. **Launch the Streamlit app**
+   streamlit run sprint4/s4_gui.py
+
+6. **Running Tests**
+   pytest sprint4/s4_test.py
+   - Follow the on-screen prompts to select a job and profile, then generate and download your resume and cover letter.
+   - If you encounter “429 Resource has been exhausted,” check your Gemini API quota, wait a few minutes, and retry.
 
 
-# ************ COMP490Project1MayZKyi_Sprint 3 ************
+## LLM Prompt Strategy
 
-# Interactive Job Selection and User Data Entry
-# 1. Overview of Sprint 3
-- Sprint 3 introduces an interactive interface that allows users to:
+The prompt instructs Gemini to:  
+- Draft a concise, ATS-friendly resume tailored to the selected job description.  
+- Emphasize keywords and skills that match the job requirements.  
+- Format output in Markdown with clear headings and bullet points.  
+- Compose a cover letter that addresses the hiring manager, highlights fit, and mirrors the job language.  
 
-- View job postings stored in the SQLite database (from Sprint 2).
-- Select a job from the list to display its full details.
-- Input personal details, including:
-- Identifying Information: Name, email, phone number, GitHub, LinkedIn, etc and save the entered information to the database in a new user_info table under "job_postings.db"
+## Why Google Gemini AI
 
-# 2. Requirements
-- Python 3.12 or later
-- SQLite3
-- pytest (for testing)
-- tkinter for GUI
-- A virtual environment (recommended)
+Google Gemini AI was chosen because:  
+- It excels at structured text generation, producing coherent Markdown.  
+- Its strong contextual understanding aligns content precisely with job requirements.  
+- The `google-generativeai` package simplifies integration and authentication with Google Cloud.  
 
-# 3. Setting Up the Program
-# Clone the Repository
-    - Clone the repository using the command:git clone <repository_url>
-    # Example usage:
-    - git clone https://github.com/mkyi-bsu/COMP490Project1MayZKyi.git
+## Future Improvements
 
-# 4. The Interactive Interface
-1. First Implementation: (s3_display_all_jobs.py) Console-based
-✅ - Displays job all listings from (job_postings.db & job_postings2.db)
-✅ - Allows user selection from combined job lists
-✅ - Fetches and prints complete job details in the console
-✅ - Handles missing databases gracefully
-❌ - Not interactive (only console-based, no UI elements)
+- Add user authentication and profile management.  
+- Implement an ATS-compliance scoring metric.  
+- Modularize prompt templates for reuse across document types.  
+- Support multiple languages and regional job formats.  
+- Deploy as a serverless application (AWS Lambda, Google Cloud Run).  
 
-2. Second Implementation (s3_ui_components) Tkinter-Based UI
-✅ - Provides a graphical user interface (GUI) for job selection
-✅ - Allows users to enter and save their personal information
-✅ - Displays job title, company, location, and description in the UI
-❌ - Does not show full job details (full description, missing employment type, date posted, salary, etc.)
+## License
 
-# Run the Both Console-based & Tkinter-Based UI
-- Run the UI or enter "python3 s3_ui_components.py" in terminal
-- A job list will be displayed.
-- Selecting a job will show its detailed description.
-- For Tkinter-based UI, users can enter personal details and click a "Save" button to store them in the database.
+This project is licensed under the MIT License.  
 
-# 5. Database Information
-- expands the SQLite database (job_postings.db) by adding a new table for user data.
+## Author
 
-Database Tables:
-- job_postings → Stores job listings.
-- user_info (new) → Stores user-entered information.
-
-# 6. Running Automated Tests
-pytest s3_test_app.py
-
-# ************ COMP490Project1MayZKyi_Sprint 2 ************
-
-# Sprint 2 extracts job posting data from JSON files and inserts it into an SQLite database.
-
-# 1. Requirements
-    - Python 3.12 or later
-    - SQLite3, Pytest, os, time (libraries)
-    - A virtual environment (optional, but recommended if you have a supported IDE)
-# 2. Setting Up the Program
-  # Clone the Repository
-    - Clone the repository using the command:git clone <repository_url>
-    # Example usage:
-    - git clone https://github.com/mkyi-bsu/COMP490Project1MayZKyi.git
-  # Navigate into the repository folder:
-    - Navigate the repository folder: cd <repository_folder>
-    # Example usage: 
-    - (Replace <repository_folder> with the folder you used to save the downloaded repository.)
-  # Activate the Virtual Environment
-    - Create a virtual environment:
-    - Enter the command: python -m venv venv
-    - source venv/bin/activate # On Windows, use: venv\Scripts\activate
-
-# 3. Running the Python Scripts to See Job Postings Stored in the Database
-# 3(a). Run database_sprint2.py
-
-    - Command to run:
-    - python3 database_sprint2.py
-    - Expected result: A job_posting database will be created in .db format with 1649 rows.
-# 3(b). Run handle_rapid_jobs2json.py
-
-    - Command to run:
-    - python handle_rapid_jobs2json.py
-    - Expected result: A job_posting database will be created in .db format with 386 rows.
-
-# 4. Verify Job Data Insertion into the Table
-To verify the job data insertion, run the following commands in the terminal or virtual environment:
-    - Open the SQLite database:
-    - sqlite3 job_postings.db
-    - Example usage: Run the query to count the rows:
-    - SELECT COUNT(*) FROM job_postings;
-
-# 5. Run the Tests
-    - To run the tests, execute the following command:
-    - pytest test_database.py
-
-***** Note: The current version does not correctly handle inserting two types of JSON formats into the same table. To address this, I created the handle_rapid_jobs2json.py script to insert JSON data from rapid_jobs2.json. *****
-
-**** Update: It was fixed. **** 
-
-# ************ COMP490Project1MayZKyi_Sprint 1 ************
-
-# How to Run the Program: Make sure to have the following requriements ready on your device: 
-  1. Python 3 installed on your device
-  2. A Google AI API Key
-  3. The google-generativeai package installed (Install using pip install google-generativeai)
-
-# Running the Program 
-  1. Clone the project repository (git clone https://github.com/mkyi-bsu/COMP490Project1MayZKyi.git)
-  2. Save the project to your device and open it with a supported IDE
-  3. Run the "create_resume.py" script
-  4. Enter the Google API key when prompted
-  5. Provide a directory path to save the generated resume. The resume will be saved as resume_template.md in the specified directory
-
-# Why I Chose Google Gemini AI
-I chose Google’s Gemini AI because it’s free to use and works well for generating structured text like resumes. It understands context, so the resume matches the job description better. It’s also fast and easy to use. Plus, I’m already familiar with Google Cloud, which made it easier to set up.
-
-# The AI Prompt Chosen and Why
-I started with a basic prompt, But then I decided to focus more on optimizing the resume for applicant tracking systems (ATS). I modified the prompt to focus on aligning the resume with keywords from the job description to optimize it for applicant tracking systems (ATS). This change made sure the resume would be more likely to pass ATS filters by highlighting key skills and experiences that match the job description.
-
-
-
-
-
+May Zar Kyi  
+Bridgewater State University
+GitHub: https://github.com/mkyi-bsu/resume-generator-gemini-ai  
