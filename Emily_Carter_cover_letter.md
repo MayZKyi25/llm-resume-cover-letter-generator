@@ -1,1 +1,0 @@
-Generated cover letter and resume content
